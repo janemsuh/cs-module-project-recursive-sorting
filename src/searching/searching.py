@@ -22,5 +22,26 @@ def binary_search(arr, target, start, end):
 # sorted in ascending order or in descending order
 # You can implement this function either recursively 
 # or iteratively
-# def agnostic_binary_search(arr, target):
-    # Your code here
+def agnostic_binary_search(arr, target):
+    # iterative solution
+    start = 0
+    end = len(arr) - 1
+    isIncreasing = arr[start] < arr[end]
+    while end >= start:
+        midpoint = (start + end) // 2
+        # target is in the exact middle of the array
+        if arr[midpoint] == target:
+            return midpoint
+        # array sorted in ascending order
+        if (isIncreasing):
+            if arr[midpoint] > target:
+                end = midpoint - 1
+            else:
+                start = midpoint + 1
+        # array sorted in descending order
+        else:
+            if arr[midpoint] < target:
+                end = midpoint - 1
+            else:
+                start = midpoint + 1
+    return -1
